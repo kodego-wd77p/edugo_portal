@@ -11,18 +11,6 @@ use Illuminate\Support\Str;
 class CreationOfPortalController extends Controller
 {
 
-    // function index(){
-
-    //     ddd('fjnasfn');
-    //     // return view('allcreators');
-    // }
-
-    // function list(){
-    //     return CreationOfPOrtal::all();
-    //     return view('list');
-    // }
-
-
 
     /**
      * Display a listing of the resource.
@@ -33,11 +21,36 @@ class CreationOfPortalController extends Controller
     {
         $creators = CreationOfPortal::all();
         
+        // ddd($creators);
         // ddd($creation);
 
-        return view('creation_of_portals.allcreator', [
+        
+
+        return view('new', [
             'creators' => $creators
         ]);
+    }
+
+    // function index() {
+    //     return view('create');
+
+    // }
+
+    
+
+    public function store(Request $request)
+    {
+        // return $request->input();
+        // ddd($request->all());
+        $portals = new CreationOfPortal;
+
+        $portals->portal_name=$request->input("portal_name");
+        $portals->creator_name=$request->input("creator_name");
+        $portals->password=$request->input("passwords");
+        $portals->save();
+        
+
+
     }
 
     /**
@@ -56,10 +69,10 @@ class CreationOfPortalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    // public function store(Request $request)
+    // {
+    //     //
+    // }
 
     /**
      * Display the specified resource.
@@ -69,7 +82,7 @@ class CreationOfPortalController extends Controller
      */
     public function show($id)
     {
-        //
+        ddd($id);
     }
 
     /**

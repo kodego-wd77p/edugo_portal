@@ -114,13 +114,15 @@
 <h1>All Creators</h1>
 
 
-    <!-- @foreach ($creators as $creation_of_portals) -->
+    
 
     
 
 <table class="table">
+    
   <thead>
     <tr>
+        
       <th scope="col">ID</th>
       <th scope="col">Creators</th>
       <th scope="col">Portal Names</th>
@@ -128,6 +130,7 @@
     </tr>
   </thead>
   <tbody>
+    @foreach ($creators as $creation_of_portals)
     <tr>
       <th scope="row">{{ $creation_of_portals->id }}</th>
       <td>{{ $creation_of_portals->creator_name }}</td>
@@ -136,6 +139,7 @@
     </tr>
 
   </tbody>
+  @endforeach
 </table>
 
         </main>
@@ -147,7 +151,7 @@
 
 
 
-@endforeach
+
 
     <!-- Bootstrap Script -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

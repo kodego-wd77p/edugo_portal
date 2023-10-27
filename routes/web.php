@@ -11,6 +11,7 @@ use App\Models\CreationOfPOrtal;
 
 
 use App\Http\Controllers\CreatePortalController;
+use App\Http\Controllers\ListController;
 use App\Http\Controllers\CreationOfPortalController;
 
 
@@ -30,16 +31,6 @@ use App\Http\Controllers\StudentsController;
 |
 */
 
- // return view('welcome');
-
-    // return Students::all();
-    // return Teachers::all();
-    // return Submit_acti::all();
-    // return Activities::all();
-
-// Route::get('/students', function () {
-//     return view('students.index');
-// });
 
 Route::get('/allcreators', function () {
     return view('allcreators.index');
@@ -68,6 +59,21 @@ Route::get('/', function (){
     return view('index');
 });
 
+// Route::get('/portal', [CreatePortalController::class, 'index']
+// );
+
+
+// TRY
+
+Route::get('/portal', [ListController::class, 'index']);
+Route::get('/list', [ListController::class, 'list']);
+
+
+// Route::get('/portal', function(){
+//     return view('list');
+// });
+
+// Route::get('list', 'CreatePortalController@list');
 
 
 // CREATING PORTAL CONTROLLER
@@ -78,7 +84,12 @@ Route::get('/create', function(){
 
 
 
-Route::post('createportal', );
+
+Route::post('/createportal', 'CreatePortalController@create');
+
+
+
+// Route::post('createportal', );
 
 // TO SEE ALL CREATORS - FOR ADMIN
 // Route::view('/allcreators', 'allcreators');
@@ -86,3 +97,18 @@ Route::post('createportal', );
 Route::get('/allcreator', [CreationOfPortalController::class, 'index']);
 
 Route::get('/allcreators/{id}', [CreationOfPortalController::class, 'show']);
+
+
+// Route::put('/add', [CreationOfPortalController::class, 'store']);
+Route::get('/new', [CreationOfPortalController::class, 'index']);
+
+
+// Storing in Database
+Route::post('/create', function(){
+    $creation_of_portal = new CreationOfPOrtal();
+    $creation_of_portal->name = request('name');
+    $creation_of_portal->portal = request('portal');
+    $creation_of_portal->password = request('password');
+    $creation_of_portal->save();
+
+});

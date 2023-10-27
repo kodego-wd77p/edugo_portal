@@ -14,7 +14,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/create.css') }}" rel="stylesheet">
 
-    <title>Document</title>
+    <title>Create POrtal</title>
 </head>
 <body>
 
@@ -38,23 +38,25 @@
 </header>
 <main>
 
+<form method="POST" action="/create">
+    @csrf
 <div class="form-group">
 <label>Creator's Name</label>
-<input type="text" name="creator" class="form-control" placeholder="Enter Your Name Here">
+<input type="text" for="name" name="name" class="form-control" placeholder="Enter Your Name Here">
     </div>
 
 <div class="form-group">
 <label>Portal Name</label>
-<input type="text" name="name" class="form-control" placeholder="Enter Here">
+<input type="text" for="portal" name="portal" class="form-control" placeholder="Enter Here">
     </div>
 
 <div class="form-group">
 <label>Password</label>
-<input type="password" name="password" class="form-control" placeholder="Enter The Password Here">
+<input type="password" for="password" name="password" class="form-control" placeholder="Enter The Password Here">
     </div>
 
     <button type="submit" class="btn">Create</button>
-    
+    </form>
 
 </main>
 
