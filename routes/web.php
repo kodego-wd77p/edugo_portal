@@ -1,22 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Support\Str;
-use App\Models\Students;
-use App\Models\Teachers;
-use App\Models\Submit_acti;
-use App\Models\Activities;
-use App\Models\CreationOfPOrtal;
 
+// CONTROLLERS
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\SubmittedActivityController;
 
-use App\Http\Controllers\CreatePortalController;
-use App\Http\Controllers\ListController;
-use App\Http\Controllers\CreationOfPortalController;
-
-
-use App\Http\Controllers\StudentsController;
-// use App\Http\Controllers\WelcomesController;
 
 
 
@@ -31,84 +21,71 @@ use App\Http\Controllers\StudentsController;
 |
 */
 
-
-Route::get('/allcreators', function () {
-    return view('allcreators.index');
+// HOME
+Route::get('/', function () {
+    return view('auth.login');
 });
 
+###
 
-// Route::get('show_students', [StudentsController::class, 'index']);
-
-
+// VERIFICATION
 Auth::routes(['verify' => true]);
-
-// INSIDE AFTER THE USER HAVE LOG IN
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
+###
+
+## ACTIVITIES MVC
+
+// USE TO SHOW ALL THE HTML - NEED BLADE FILE
+Route::get('/activities', [ActivityController::class, 'index']);
+
+// SHOW SPECIFIC ONE (use singular coz it only display one - best practice)  - NEED BLADE FILE
+Route::get('/activity/{id}', [ActivityController::class, 'show']);
+
+// CREATE  - NEED BLADE FILE
+Route::get('/activity', [ActivityController::class, 'create']);
+
+// USE WHEN YOU WANT TO PUT SOMETHING IN THE FORM - NEED BLADE FILE
+Route::get('/activity/{id}/edit', [ActivityController::class, 'edit']);
+
+###
+
+// WILL BE COMING FROM THE FORM
+Route::post('/activity', [ActivityController::class, 'store']);
+
+// UPDATE A DATA
+Route::put('/activity/{id}/edit', [ActivityController::class, 'update']);
+
+// USE FOR DELETING
+Route::delete('/activity/{id}', [ActivityController::class, 'destroy']);
+
+###
 
 
 
-// ADMIN
-Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
+## SUBMITTED ACTIVITIES MVC
 
-});
+// USE TO SHOW ALL THE HTML - NEED BLADE FILE
+Route::get('/allactivities', [SubmittedActivityController::class, 'index']);
 
+// SHOW SPECIFIC ONE (use singular coz it only display one - best practice)  - NEED BLADE FILE
+Route::get('/allactivity/{id}', [SubmittedActivityController::class, 'show']);
 
-// FOR ALL
-Route::get('/', function (){
-    return view('index');
-});
+// CREATE  - NEED BLADE FILE
+Route::get('/allactivity', [SubmittedActivityController::class, 'create']);
 
-// Route::get('/portal', [CreatePortalController::class, 'index']
-// );
+// USE WHEN YOU WANT TO PUT SOMETHING IN THE FORM - NEED BLADE FILE
+Route::get('/allactivity/{id}/edit', [SubmittedActivityController::class, 'edit']);
 
+###
 
-// TRY
+// WILL BE COMING FROM THE FORM
+Route::post('/allactivity', [SubmittedActivityController::class, 'store']);
 
-Route::get('/portal', [ListController::class, 'index']);
-Route::get('/list', [ListController::class, 'list']);
+// UPDATE A DATA
+Route::put('/allactivity/{id}/edit', [SubmittedActivityController::class, 'update']);
 
+// USE FOR DELETING
+Route::delete('/allactivity/{id}', [SubmittedActivityController::class, 'destroy']);
 
-// Route::get('/portal', function(){
-//     return view('list');
-// });
-
-// Route::get('list', 'CreatePortalController@list');
-
-
-// CREATING PORTAL CONTROLLER
-
-Route::get('/create', function(){
-    return view('createportal');
-});
-
-
-
-
-Route::post('/createportal', 'CreatePortalController@create');
-
-
-
-// Route::post('createportal', );
-
-// TO SEE ALL CREATORS - FOR ADMIN
-// Route::view('/allcreators', 'allcreators');
-
-Route::get('/allcreator', [CreationOfPortalController::class, 'index']);
-
-Route::get('/allcreators/{id}', [CreationOfPortalController::class, 'show']);
-
-
-// Route::put('/add', [CreationOfPortalController::class, 'store']);
-Route::get('/new', [CreationOfPortalController::class, 'index']);
-
-
-// Storing in Database
-Route::post('/create', function(){
-    $creation_of_portal = new CreationOfPOrtal();
-    $creation_of_portal->name = request('name');
-    $creation_of_portal->portal = request('portal');
-    $creation_of_portal->password = request('password');
-    $creation_of_portal->save();
-
-});
+###

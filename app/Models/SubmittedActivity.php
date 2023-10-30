@@ -4,14 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use App\Models\SubmittedActivities;
 
-class Submit_acti extends Model
+class SubmittedActivity extends Model
 {
     use HasFactory;
 
-    protected $table = "submitted_activities";
+    protected $table = 'submittedactivities';
 
     public $timestamps = false;
+
+    protected $fillable = [
+        'subjects',
+        'title',
+        'students_name',
+        'activity_text'
+    ];
+
 }

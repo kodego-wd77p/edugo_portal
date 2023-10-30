@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
 
@@ -11,46 +11,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <table class="role @error('role') is-invalid @enderror" role="role" value="{{ old('role') }}" required autocomplete="role" autofocus >
-                                        <tr>
-                                        <th>
-                                    <input class="form-check-input" type="radio" name="role" id="role" {{ old('role') ? 'checked' : '' }}>
-                                    
-
-                                    <label class="form-check-label" for="role">
-                                        {{ __('Student') }}
-                                    </label>
-                                </th>
-                                <th>
-                                    <input class="form-check-input" type="radio" name="role" id="role" {{ old('role') ? 'checked' : '' }}>
-                                    
-
-                                    <label class="form-check-label" for="role">
-                                        {{ __('Teacher') }}
-                                    </label>
-                                </th>
-                                    </tr>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- <div class="row">
-                            <label for="role" class="col">{{ __('Role') }}</label>
-
-                            <div class="col">
-                                <input id="role" type="radio" class="form-control @error('role') is-invalid @enderror" role="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
-
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div> -->
+                        
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -104,14 +65,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn" id="registers">
+                                <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
                             </div>
                         </div>
                     </form>
-
-                    <p class="credit">©2023 EduGo Portal. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
